@@ -1,0 +1,53 @@
+import com.android.builder.core.DefaultManifestParser
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.3'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'me.ele:mess-plugin:1.1.5'
+
+        // tinkersupport插件
+        classpath "com.tencent.tinker:tinker-patch-gradle-plugin:1.9.9"
+        classpath "com.tencent.bugly:tinker-support:1.1.5"
+        //多渠道打包工具
+        classpath 'com.mcxiaoke.packer-ng:plugin:2.0.1'
+        //tinyun
+        classpath fileTree(include: ['*.jar', '*.so'], dir: 'XNOnline/libs/tinyun')
+    }
+}
+
+
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+        maven {
+            if (IMPORT_LOCAL == 'true') {
+                url "../repo"
+            } else {
+                url "http://172.20.31.110:8081/repository/maven-public/"
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+def readVersion() {
+    def manifestParser = new DefaultManifestParser(getMenifestFile())
+    return manifestParser.getVersionName()
+}
+
+File getMenifestFile() {
+    return project.rootProject.project('sample').file('src/main/AndroidManifest.xml')
+}

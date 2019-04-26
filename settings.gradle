@@ -1,0 +1,19 @@
+//第三库源码工程
+if (SOURCE_LOAD.equals("true") || LIB_SWITCH.equals(THIRD_LIB_SWITCH)) {
+    include ':XNOnlineThirdLib:MPChartLib'
+    include ':XNOnlineThirdLib:google_Zxing_core'
+    include ':XNOnlineThirdLib:unicorn'
+    include ':XNOnlineThirdLib:universalImageLoaderlibrary'
+    include ':XNOnlineThirdLib:XNTinker'
+    include ':XNOnlineThirdLib:tray'
+}
+//基础公共库工程
+if (SOURCE_LOAD.equals("true") || LIB_SWITCH.equals(COMMONLIB_CODE_SWITCH)) {
+    include ':XNOnlineCommonLib'
+}
+if (SOURCE_LOAD.equals("true") || LIB_SWITCH.equals(XNCORE_CODE_SWITCH)) {
+    include ':XNCore'
+}
+if (LIB_SWITCH.equals(SAMPLE_SWITCH)) {
+    include ':sample'
+}
