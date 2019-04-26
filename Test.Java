@@ -1,9 +1,7 @@
-package com.tencent.bugly.hotfix;
+package com.eaway.test;
 
-import android.content.Context;
-
-public class MainActivity {
-	public void main(){
+public class MainTest {
+	public void test(){
 		log.i("test", "test");
 	}
 }
